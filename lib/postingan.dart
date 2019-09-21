@@ -19,14 +19,14 @@ class _PostinganState extends State<Postingan> {
   Map data;
   List feeds;
 
-  Future getData() async {
+  Future<Null> getData() async {
     print('[log] call getData()');
     http.Response response =
-        await http.get("http://lejendindustry.com/admin-panel/feed/api/list");
+        await http.get("http://lejendindustry.com/admin-panel/event/api/list");
     data = json.decode(response.body);
     print('[log] data: ${data}');
     setState(() {
-      feeds = data['data']['feeds'];
+      feeds = data['data'];
     });
     print('[log] ${feeds[0]}');
   }
@@ -36,12 +36,14 @@ class _PostinganState extends State<Postingan> {
     super.initState();
     getData();
   }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffA8C7C8),
-      body: ListView.builder(
+      body: RefreshIndicator(
+        child: ListView.builder(
           itemCount: feeds == null ? 0 : feeds.length,
           itemBuilder: (context, index) => Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -53,26 +55,9 @@ class _PostinganState extends State<Postingan> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        new Container(
-                            height: 40.0,
-                            width: 40.0,
-                            decoration: new BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(10.0),
-                              image: new DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: NetworkImage(
-//                                      feeds[index]['user']['profile_image']
-                                      'https://images.unsplash.com/photo-1552933529-e359b2477252?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'
-                                  )
-                              ),
-                            )),
-                        new SizedBox(
-                          width: 10.0,
-                        ),
                         new Text(
-                          //feeds[index]['user']['username'],
-                          'text username',
+                          feeds[index]['title'],
+                          // 'text username',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -91,6 +76,8 @@ class _PostinganState extends State<Postingan> {
                   ),
                 ],
               )),
+              onRefresh: getData,
+      ),
     );
   }
 }

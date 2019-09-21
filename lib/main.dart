@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'hal_utama.dart';
 
 
 void main() {
   runApp(new MaterialApp(
     title: "Hallovent!",
-    home: new HalamanLogin(),
+    home: new HalUtama(),
   ));
 }

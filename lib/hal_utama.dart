@@ -17,37 +17,6 @@ class HalUtama extends StatelessWidget {
     return Scaffold(
       appBar: topBar,
       body: Postingan(),
-      backgroundColor: Color(0xffA8C7C8),
-      bottomNavigationBar: new Container(
-        height: 45.0,
-        child: new BottomAppBar(
-          elevation: 0.0,
-          color: Color(0xffA8C7C8),
-          child: new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              new IconButton(
-                icon: Icon(Icons.home,
-                size: 30.0),
-                color: Colors.black,
-                onPressed: () {},
-              ),
-              new IconButton(
-                icon: Icon(Icons.add_box,
-                size: 30.0),
-                color: Colors.black,
-                onPressed: () {},
-              ),
-              new IconButton(
-                icon: Icon(Icons.person,
-                size: 30.0),
-                color: Colors.black,
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
