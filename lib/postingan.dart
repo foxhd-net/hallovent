@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_share/flutter_share.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -24,11 +25,20 @@ class _PostinganState extends State<Postingan> {
     http.Response response =
         await http.get("http://lejendindustry.com/admin-panel/event/api/list");
     data = json.decode(response.body);
-    print('[log] data: ${data}');
+    print('[log] data: $data');
     setState(() {
       feeds = data['data'];
     });
+
     print('[log] ${feeds[0]}');
+  }
+  Future<void> share() async {
+    await FlutterShare.share(
+        title: 'ada yang seru nih!',
+        text: 'ada yang seru nih!',
+        linkUrl: '$data',
+
+    );
   }
 
   @override
@@ -36,6 +46,7 @@ class _PostinganState extends State<Postingan> {
     super.initState();
     getData();
   }
+
   
 
   @override
@@ -60,6 +71,10 @@ class _PostinganState extends State<Postingan> {
                           // 'text username',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
+//                        new IconButton(
+//                          icon: Icon(Icons.share, size: 30.0, color: Colors.black,),
+//                          onPressed: share,
+//                        )
                       ],
                     ),
                   ),
