@@ -7,6 +7,6 @@
      <item>
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/hdpi" />
+            android:src="@drawable/splashscreen" />
     </item>
 </layer-list>

@@ -23,7 +23,7 @@ class _PostinganState extends State<Postingan> {
   Future<Null> getData() async {
     print('[log] call getData()');
     http.Response response =
-        await http.get("http://lejendindustry.com/admin-panel/event/api/list");
+        await http.get("http://lejendindustry.com/event/api/list");
     data = json.decode(response.body);
     print('[log] data: $data');
     setState(() {
